@@ -1,4 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 hello.R
+R\hello.R
 EPhysMethods.Rproj
