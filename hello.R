@@ -1,3 +1,9 @@
+library(roxygen2)
+library(devtools)
+
+document()
+devtools::check()
+devtools::build()
 detach("package:ERGtools2", unload = TRUE)
 install.packages("/home/moritz/Dokumente/R/ERGtools2",repos=NULL)
 library(ERGtools2)

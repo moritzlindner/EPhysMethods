@@ -7,7 +7,7 @@
 #' @param samp.freq Numeric scalar, the sampling frequency in Hertz.
 #' @param low Numeric scalar, the lower cutoff frequency in Hertz.
 #' @param high Numeric scalar, the upper cutoff frequency in Hertz.
-#' @importFrom units as_units units
+#' @import units
 #'
 #' @return Filtered signal with the same dimensions as input 'x'.
 #'

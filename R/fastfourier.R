@@ -1,6 +1,11 @@
-' @param x Numeric vector or matrix of signal data.
+#' Compute the Fast Fourier Transform (FFT) of a signal.
+#'
+#' This function calculates the FFT of a signal and returns the frequency domain
+#' representation.
+#'
+#' @param x Numeric vector or matrix of signal data.
 #' @param samp.freq Numeric scalar, the sampling frequency in Hertz.
-#' @param ... Additional arguments to pass to \code{\link[base]{fft}}.
+#' @param ... Additional arguments to pass to \code{\link[stats]{fft}}.
 #'
 #' @return A data frame with two columns: 'fur' representing the Fourier
 #' coefficients and 'freq' representing the corresponding frequencies.
@@ -10,12 +15,12 @@
 #'
 #' @export
 fastfourier <- function(x, samp.freq, ...) {
-  if(!is.null(dim(x))){
-    f<-apply(x,2,funciton(y){
+  if (!is.null(dim(x))) {
+    f <- apply(x, 2, function(y) {
       fastfourier.core(y, samp.freq, ...)
     })
-  }else{
-    f<-fastfourier.core(x, samp.freq, ...)
+  } else{
+    f <- fastfourier.core(x, samp.freq, ...)
   }
 }
 
@@ -27,12 +32,12 @@ fastfourier <- function(x, samp.freq, ...) {
 #' @return A data frame with 'fur' and 'freq' columns.
 #'
 #' @importFrom stats fft
-#' @importFrom units units
+#' @import units
 #'
 #' @noRd
-fastfourier.core<-function(x, samp.freq, ...) {
-  if("units" %in% class(x)){
-    units(x)<-NULL
+fastfourier.core <- function(x, samp.freq, ...) {
+  if ("units" %in% class(x)) {
+    units(x) <- NULL
   }
   N <- length(x)
   fk <- fft(x)
