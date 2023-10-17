@@ -43,7 +43,7 @@ filter.bandpass <- function(x, samp.freq, low, high) {
   if (is.null(dim(x))) {
     out <- filter.bandpass.core(x, samp.freq, low, high)
   } else{
-    out <- apply(drop_units(dat), 2, function(x) {
+    out <- apply(drop_units(x), 2, function(x) {
       filter.bandpass(x
                       , samp.freq, low, high)
     })
