@@ -2,5 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-hello.R
+.hello.R
 R\hello.R
+man\hello.Rd

@@ -22,6 +22,7 @@ fastfourier <- function(x, samp.freq, ...) {
   } else{
     f <- fastfourier.core(x, samp.freq, ...)
   }
+  return(f)
 }
 
 #' Internal function to compute the FFT of a signal.
