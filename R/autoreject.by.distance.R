@@ -18,9 +18,11 @@
 #' rejected <- autoreject.distance(data, threshold = 1)
 #'
 #' @importFrom stats dist
+#' @importFrom units drop_units
 #'
 #' @export
 autoreject.by.distance <- function(x, threshold = 1) {
+  x<-drop_units(x)
   dist_matrix <- dist(t(scale(x)), method = "euclidean")
   dist_df <- as.matrix(dist_matrix)
   reject <- scale(apply(dist_df, 1, mean)) > threshold
