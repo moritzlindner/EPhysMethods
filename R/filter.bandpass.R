@@ -36,7 +36,6 @@ filter.bandpass <- function(x, samp.freq, low, high) {
   if ("units" %in% class(x)) {
     un <- units(x)
     units(x) <- NULL
-    x<-drop_units(x)
   }
   units(samp.freq) <- NULL
   units(low) <- NULL
