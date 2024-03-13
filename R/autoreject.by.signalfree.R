@@ -25,24 +25,24 @@
 autoreject.by.signalfree <- function(x, rejection.cutoff = 1) {
   # scale the data
   scale <- apply(x, 2, function(x) {
-    scale(filter.detrend(x), center = F)
+    scale(filter.detrend(x), center = F);
   })
   # get areas of maximum normalized spread
   CoV <- apply(scale, 1, function(x) {
-    log1p(sd(x) / abs(mean(x)))
+    log1p(sd(x) / abs(mean(x)));
   })
   #smoothen and scale, to identify areas of high variance
-  smoother<-(2/floor((length(CoV) / 10)/2))+1
-  CoV <- scale(runmed(CoV, smoother), center = T)
-  RoV <- CoV > 0
+  smoother <- (2 / floor((length(CoV) / 10) / 2)) + 1;
+  CoV <- scale(runmed(CoV, smoother), center = T);
+  RoV <- CoV > 0;
   # take the regions of high variance
-  dat_ROV <- x[RoV,]
+  dat_ROV <- x[RoV, ];
 
   dat_ROV <- apply(dat_ROV, 1, function(x) {
-    abs(x - mean(x)) / sd(x)
+    abs(x - mean(x)) / sd(x);
   })
   #calculate spread from normal based on this
-  spread <- scale(abs((apply(dat_ROV, 1, mean))))
-  rejected <- spread > rejection.cutoff
-  return(rejected)
+  spread <- scale(abs((apply(dat_ROV, 1, mean))));
+  rejected <- spread > rejection.cutoff;
+  return(rejected);
 }

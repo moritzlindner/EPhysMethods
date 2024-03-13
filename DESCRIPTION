@@ -1,10 +1,10 @@
 Package: EPhysMethods
 Type: Package
 Title: Helper Functions and Methods frequently used with electrophysiological data (filters, outlier detection)
-Version: 0.2.0
+Version: 0.3.0
 Author: person("Moritz", "Lindner", email = "moritz@lindnerlab.de", role = c("aut", "cre"))
 Maintainer: Moritz Lindner <moritz@lindnerlab.de>
-Description: This package contains a collection of functions and methods frequently used with electrophysiological data (filters, outlier detection)
+Description: This package contains a collection of functions and methods frequently used with electrophysiological data (filters, outlier detection).
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true

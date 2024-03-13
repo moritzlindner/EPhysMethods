@@ -21,5 +21,5 @@
 #' @family filter functions
 #' @rdname filter.detrend
 filter.detrend <- function(x, ...) {
-  pracma::detrend(x, ...)
+  detrend(x, ...);
 }

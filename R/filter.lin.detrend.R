@@ -19,8 +19,8 @@
 #' @family filter functions
 #' @rdname filter.detrend
 filter.lin.detrend <- function(x) {
-  start<-mean(x[1:10])
-  end<-mean(x[(length(x)-10):length(x)])
-  trend<-seq(start,end,length.out=length(x))
-  return(x-trend)
+  start<-mean(x[1:10]);
+  end<-mean(x[(length(x)-10):length(x)]);
+  trend<-seq(start,end,length.out=length(x));
+  return(x-trend);
 }

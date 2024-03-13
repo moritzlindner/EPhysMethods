@@ -22,6 +22,7 @@ This function calculates the FFT of a signal and returns the frequency domain
 representation.
 }
 \examples{
-fft_result <- fastfourier(signal, samp.freq = 1000)
-
+signal<-sin((1:1000)/30)*sin((1:1000)/60)
+plot(signal)
+fft_result <- fastfourier(signal, samp.freq = 1000)#'
 }

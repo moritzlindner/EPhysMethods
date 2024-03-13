@@ -23,7 +23,10 @@ This function filters a signal using a fourth order Butterworth bandpass filter 
 specified low and high frequency cutoffs. This function uses the \link[signal:butter]{signal::butter} function from the \link[signal:signal]{signal::signal} package.
 }
 \examples{
+signal<-sin((1:1000)/30)*sin((1:1000)/60)
+plot(signal)
 filtered_signal <- filter.bandpass(signal, samp.freq = 1000, low = 5, high = 100)
+plot(filtered_signal)
 }
 \seealso{
 \link[signal:butter]{signal::butter}

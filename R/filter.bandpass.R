@@ -12,46 +12,49 @@
 #' @return Filtered signal with the same dimensions as input 'x'.
 #'
 #' @examples
+#' signal<-sin((1:1000)/30)*sin((1:1000)/60)
+#' plot(signal)
 #' filtered_signal <- filter.bandpass(signal, samp.freq = 1000, low = 5, high = 100)
+#' plot(filtered_signal)
 #' @seealso \link[signal:butter]{signal::butter}
 #'
 #' @export
 filter.bandpass <- function(x, samp.freq, low, high) {
   # Check if input parameters are numeric
   if (!all(sapply(list(x, samp.freq, low, high), is.numeric))) {
-    stop("All input parameters must be numeric.")
+    stop("All input parameters must be numeric.");
   }
 
   # Check if the sampling frequency is positive
   if (samp.freq <= 0) {
-    stop("Sampling frequency must be greater than zero.")
+    stop("Sampling frequency must be greater than zero.");
   }
 
   # Check if the low and high frequencies are in the correct range
   if (low >= high || low < 0 || high >= 0.5 * samp.freq) {
-    stop("Invalid low and high frequency values.")
+    stop("Invalid low and high frequency values.");
   }
 
   un <- NULL
   if ("units" %in% class(x)) {
-    un <- units(x)
-    units(x) <- NULL
+    un <- units(x);
+    units(x) <- NULL;
   }
-  units(samp.freq) <- NULL
-  units(low) <- NULL
-  units(high) <- NULL
+  units(samp.freq) <- NULL;
+  units(low) <- NULL;
+  units(high) <- NULL;
   if (is.null(dim(x))) {
-    out <- filter.bandpass.core(x, samp.freq, low, high)
+    out <- filter.bandpass.core(x, samp.freq, low, high);
   } else{
     out <- apply(x, 2, function(x) {
       filter.bandpass(x
-                      , samp.freq, low, high)
+                      , samp.freq, low, high);
     })
   }
   if (!is.null(un)) {
-    return(as_units(out, un))
+    return(as_units(out, un));
   } else{
-    return(out)
+    return(out);
   }
 }
 
@@ -70,7 +73,7 @@ filter.bandpass <- function(x, samp.freq, low, high) {
 #' @importFrom signal butter filtfilt
 #' @noRd
 filter.bandpass.core <- function(x, samp.freq, low, high) {
-  bf <- butter(4, c(low, high)  * (2 / samp.freq), type = "pass")
-  x.filtered <- filtfilt(bf, x)
-  return(x.filtered)
+  bf <- butter(4, c(low, high)  * (2 / samp.freq), type = "pass");
+  x.filtered <- filtfilt(bf, x);
+  return(x.filtered);
 }

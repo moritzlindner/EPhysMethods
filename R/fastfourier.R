@@ -11,18 +11,19 @@
 #' coefficients and 'freq' representing the corresponding frequencies.
 #'
 #' @examples
-#' fft_result <- fastfourier(signal, samp.freq = 1000)
-#'
+#' signal<-sin((1:1000)/30)*sin((1:1000)/60)
+#' plot(signal)
+#' fft_result <- fastfourier(signal, samp.freq = 1000)#'
 #' @export
 fastfourier <- function(x, samp.freq, ...) {
   if (!is.null(dim(x))) {
     f <- apply(x, 2, function(y) {
-      fastfourier.core(y, samp.freq, ...)
+      fastfourier.core(y, samp.freq, ...);
     })
   } else{
-    f <- fastfourier.core(x, samp.freq, ...)
+    f <- fastfourier.core(x, samp.freq, ...);
   }
-  return(f)
+  return(f);
 }
 
 #' Internal function to compute the FFT of a signal.
@@ -40,10 +41,10 @@ fastfourier.core <- function(x, samp.freq, ...) {
   if ("units" %in% class(x)) {
     units(x) <- NULL
   }
-  N <- length(x)
-  fk <- fft(x)
-  fk <- fk[2:length(fk) / 2 + 1]
-  fk <- 2 * fk[seq(1, length(fk), by = 2)] / N
-  freq <- (1:(length(fk))) * samp.freq / (2 * length(fk))
-  return(data.frame(fur = fk, freq = freq))
+  N <- length(x);
+  fk <- fft(x);
+  fk <- fk[2:length(fk) / 2 + 1];
+  fk <- 2 * fk[seq(1, length(fk), by = 2)] / N;
+  freq <- (1:(length(fk))) * samp.freq / (2 * length(fk));
+  return(data.frame(fur = fk, freq = freq));
 }

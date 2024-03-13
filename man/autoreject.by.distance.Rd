@@ -26,6 +26,6 @@ for rejection.
 }
 \examples{
 data <- matrix(data = c(1, 2, 3, 4, 5, 6, 7, 8, 9), ncol = 3)
-rejected <- autoreject.distance(data, threshold = 1)
+rejected <- autoreject.by.distance(data, threshold = 1)
 
 }

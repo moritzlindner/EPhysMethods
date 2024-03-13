@@ -15,16 +15,17 @@
 #'
 #' @examples
 #' data <- matrix(data = c(1, 2, 3, 4, 5, 6, 7, 8, 9), ncol = 3)
-#' rejected <- autoreject.distance(data, threshold = 1)
+#' rejected <- autoreject.by.distance(data, threshold = 1)
 #'
 #' @importFrom stats dist
 #' @importFrom units drop_units
-#'
 #' @export
 autoreject.by.distance <- function(x, threshold = 1) {
-  x<-drop_units(x)
-  dist_matrix <- dist(t(scale(x)), method = "euclidean")
-  dist_df <- as.matrix(dist_matrix)
+  if("units" %in% class(x)){
+    x <- drop_units(x);
+  }
+  dist_matrix <- dist(t(scale(x)), method = "euclidean");
+  dist_df <- as.matrix(dist_matrix);
   reject <- scale(apply(dist_df, 1, mean)) > threshold
   return(reject)
 }
