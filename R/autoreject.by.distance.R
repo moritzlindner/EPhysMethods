@@ -26,6 +26,6 @@ autoreject.by.distance <- function(x, threshold = 1) {
   }
   dist_matrix <- dist(t(scale(x)), method = "euclidean");
   dist_df <- as.matrix(dist_matrix);
-  reject <- scale(apply(dist_df, 1, mean)) > threshold
+  reject <- scale(apply(dist_df, 1, mean)) > threshold;
   return(reject)
 }
