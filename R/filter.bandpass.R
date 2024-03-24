@@ -76,6 +76,6 @@ filter.bandpass <- function(x, low, high) {
 #' @noRd
 filter.bandpass.core <- function(x, low, high) {
   bf <- butter(4, c(low, high), type = "pass");
-  x.filtered <- signal::filter(bf, x);
+  x.filtered <- as.numeric(filter(bf, x));
   return(x.filtered);
 }

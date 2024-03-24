@@ -17,8 +17,6 @@
 #' data_matrix <- matrix(rnorm(30000), ncol = 30)
 #' rejected <- autoreject.by.signalfree(data_matrix, rejection.cutoff = 1)
 #'
-#' @import stats
-#'
 #' @export
 #'
 #' @rdname autoreject.by.signalfree
