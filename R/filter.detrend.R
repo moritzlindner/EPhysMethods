@@ -16,10 +16,8 @@
 #'
 #' @importFrom pracma detrend
 #'
-#' @export
-#'
 #' @family filter functions
-#' @rdname filter.detrend
+#' @export filter.detrend
 filter.detrend <- function(x, ...) {
   detrend(x, ...);
 }
