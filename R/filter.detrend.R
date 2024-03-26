@@ -8,7 +8,7 @@
 #'
 #' @return A numeric vector representing the detrended time series.
 #'
-#' @seealso \code{\link[pracma]{detrend}}
+#' @seealso \code{\link[pracma:detrend]{detrend::detrend}}
 #'
 #' @examples
 #' x <- c(1, 2, 3, 4, 3, 2, 1)
