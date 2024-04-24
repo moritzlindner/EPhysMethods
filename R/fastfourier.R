@@ -6,7 +6,7 @@
 #' @param x Numeric vector or matrix of signal data.
 #' @param samp.freq Numeric scalar, the sampling frequency in Hertz.
 #' @param ... Additional arguments to pass to \code{\link[stats]{fft}}.
-#' @importFrom units units set_units
+#' @import units
 #'
 #' @return A data frame with two columns: 'fur' representing the Fourier
 #' coefficients and 'freq' representing the corresponding frequencies.
@@ -55,7 +55,7 @@ fastfourier <- function(x, samp.freq, ...) {
 #' @return A data frame with 'fur' and 'freq' columns.
 #'
 #' @importFrom stats fft
-#' @importFrom units units
+#' @import units
 #'
 #' @noRd
 fastfourier.core <- function(x, samp.freq, ...) {

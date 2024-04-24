@@ -16,7 +16,7 @@
 Filtered signal with the same dimensions as input 'x'.
 }
 \description{
-This function filters a signal using a fourth order Butterworth bandpass filter with
+This function filters a signal using a fourth order Butterworth band pass filter with
 specified low and high frequency cutoffs. This function uses the \link[signal:butter]{signal::butter} function from the \link[signal:signal]{signal::signal} package.
 }
 \details{

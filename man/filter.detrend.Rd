@@ -24,7 +24,7 @@ detrended <- filter.detrend(x)
 
 }
 \seealso{
-\code{\link[pracma]{detrend}}
+\code{\link[pracma:detrend]{detrend::detrend}}
 
 Other filter functions: 
 \code{\link{filter.lin.detrend}()}
