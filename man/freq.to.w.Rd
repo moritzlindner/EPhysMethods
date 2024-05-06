@@ -17,7 +17,7 @@ freq.to.w(x, time.trace = NULL, samp.freq = NULL)
 Numeric vector of the converted angular frequencies.
 }
 \description{
-This function converts a frequency to 'angular' frequency \code{W}, as required by \link[signal:butter]{signal::butter}. Note this is not truly an angular frequency but in fact 'x / (samp.freq / 2)'.
+This function converts a frequency to digital 'angular' frequency \code{W}, as required by \link[signal:butter]{signal::butter}. \code{W= x / (f(sampling)/2)}
 }
 \details{
 This function checks if the input units are correct and converts the given frequency values to angular frequency using the provided time values or sample frequency. The function understands units (\link{units::units}), so values can be provided with units.
@@ -27,8 +27,8 @@ If both \code{time.trace} and \code{samp.freq} are provided, an error is thrown.
 If only \code{time.trace} is provided, the function calculates the sample frequency from it. If only \code{samp.freq} is provided, it is directly used.
 }
 \examples{
-freq.to.w(x = 10, samp.freq = 100) # Returns 0.314159265358979
+freq.to.w(x = 10, samp.freq = 100) # Returns 0.2
 require(units)
-freq.to.w(x = 10, time.trace = as_units(c(0, 1, 2),"s")) # Returns 3.14159265358979
+freq.to.w(x = 10, time.trace = as_units(c(0, 1, 2),"s")) # Returns 20
 
 }

@@ -1,6 +1,6 @@
 #' Convert Frequency to 'Angular' Frequency (input to signalbutterworth filter)
 #'
-#' This function converts a frequency to 'angular' frequency \code{W}, as required by \link[signal:butter]{signal::butter}. Note this is not truly an angular frequency but in fact 'x / (samp.freq / 2)'.
+#' This function converts a frequency to digital 'angular' frequency \code{W}, as required by \link[signal:butter]{signal::butter}. \code{W= x / (f(sampling)/2)}
 #'
 #' @param x Numeric vector. Frequency values to be converted. If no units (\link[units:units]{units::units}) are provided, assumes Herz.
 #' @param time.trace Numeric vector of at least length 2 representing a time trace to calculate the sample frequency from. Must be of class 'units' (\link[units:units]{units::units}), with a unit convertible to 's'.
@@ -16,9 +16,9 @@
 #'
 #' @importFrom units set_units as_units drop_units
 #' @examples
-#' freq.to.w(x = 10, samp.freq = 100) # Returns 0.314159265358979
+#' freq.to.w(x = 10, samp.freq = 100) # Returns 0.2
 #' require(units)
-#' freq.to.w(x = 10, time.trace = as_units(c(0, 1, 2),"s")) # Returns 3.14159265358979
+#' freq.to.w(x = 10, time.trace = as_units(c(0, 1, 2),"s")) # Returns 20
 #'
 #' @export freq.to.w
 freq.to.w <- function(x, time.trace = NULL, samp.freq = NULL) {
@@ -37,7 +37,6 @@ freq.to.w <- function(x, time.trace = NULL, samp.freq = NULL) {
       samp.freq<-as_units(samp.freq, "Hz")
     }
   }
-
   if(!is.null(time.trace)){ # Time Trace mode
     if (length(time.trace) <= 1) {
       stop("'time.trace' must have at least length 2.")
@@ -72,8 +71,9 @@ freq.to.w <- function(x, time.trace = NULL, samp.freq = NULL) {
     }, error = function(e) {
       stop("Unit of 'x' must convertible to 'Hz' or must be none.")
     })
+  } else{
+    x<-as_units(x, "Hz")
   }
-
   return(drop_units(x / (samp.freq / 2)))
 
 }

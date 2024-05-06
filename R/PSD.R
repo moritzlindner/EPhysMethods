@@ -56,13 +56,13 @@ setMethod(
     fft <- fastfourier(dat, samp.freq = 1 / sample.rate)
     fft_short <- lapply(fft, function(x) {
       x$freq <- set_units(x$freq, "Hz")
-      x$fur <- abs(x$fur)
+      x$fur <- Mod(x$fur)
       x$fur <- as_units(x$fur, deparse_unit(dat))
       x <-
         x[x$freq < bandpass[2] * 0.75,] # flicker freq can only be detected if at least three fourth the max bandpass frequency
       x <-
         x[x$freq > max(bandpass[1] * 2, set_units(1 / max(TimeTrace(X)), "Hz") *
-                         2),] # flicker freq can only be detected if at least double the min bandpass frequency and if at least two peaks fit into one trace
+                         2),] # flicker freq can only be detected if at least double the min bandpass frequency and if at least two peaks fit into one trace (Niquist)
       x$freq_rounded <- round(x$freq)
       averaged_data <-
         aggregate(fur ~ freq_rounded, data = x, FUN = mean)

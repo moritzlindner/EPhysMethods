@@ -1,6 +1,6 @@
 #' Filter a signal with a bandpass filter.
 #'
-#' This function filters a signal using a fourth order Butterworth band pass filter with
+#' This function filters a signal using a forth order Butterworth band pass filter with
 #' specified low and high frequency cutoffs. This function uses the \link[signal:butter]{signal::butter} function from the \link[signal:signal]{signal::signal} package.
 #'
 #' @param x Numeric vector or matrix of signal data.
@@ -75,7 +75,14 @@ filter.bandpass <- function(x, low, high) {
 #' @keywords internal
 #' @noRd
 filter.bandpass.core <- function(x, low, high) {
-  bf <- butter(4, c(low, high), type = "pass");
-  x.filtered <- as.numeric(filter(bf, x));
+  bf <- butter(4, c(low, high), type = "pass",plane="z");
+  #filter.order<-200
+  #bf <- fir1(filter.order, c(low, high), type = "pass")
+  #delay <- filter.order/2
+  x.filtered <- as.numeric(filter(bf, x))
+  #print(head(x.filtered))
+  #x.filtered <- c(x.filtered[(delay+1):length(x.filtered)], rep(NA, delay))
   return(x.filtered);
+
+  # https://cran.r-project.org/web/packages/gsignal/vignettes/gsignal.html
 }
