@@ -5,18 +5,20 @@
 \alias{filter.bandpass}
 \title{Filter a signal with a bandpass filter.}
 \usage{
-\method{filter}{bandpass}(x, low, high)
+\method{filter}{bandpass}(x, low, high, order = 4)
 }
 \arguments{
 \item{x}{Numeric vector or matrix of signal data.}
 
 \item{low, high}{Numeric, Lower and upper filter bands, passed on as \code{W} to the \link[signal:butter]{signal::butter} function. Use \link{freq.to.w} to convert temporal frequencies into the required format.}
+
+\item{order}{Order of the filter to be applied. Default is 4.}
 }
 \value{
 Filtered signal with the same dimensions as input 'x'.
 }
 \description{
-This function filters a signal using a forth order Butterworth band pass filter with
+This function filters a signal using a Butterworth band pass filter with
 specified low and high frequency cutoffs. This function uses the \link[signal:butter]{signal::butter} function from the \link[signal:signal]{signal::signal} package.
 }
 \details{

@@ -45,14 +45,14 @@ setMethod(
                         bandpass = as_units(c(.5, 300), "Hz")) {
     bandpass <-
       convert_to_unit(bandpass, "s")
-    cutoff <-
-      freq.to.w(x = bandpass, time.trace <-
-                  TimeTrace(X))
+    # cutoff <-
+    #   freq.to.w(x = bandpass, time.trace <-
+    #               TimeTrace(X))
     sample.rate <- mean(diff(TimeTrace(X)))
     sample.rate <- set_units(sample.rate, "s")
 
     dat <- GetData(X, Raw = T)
-    dat <- filter.bandpass(dat, cutoff[1], cutoff[2])
+    #dat <- filter.bandpass(dat, cutoff[1], cutoff[2])
     fft <- fastfourier(dat, samp.freq = 1 / sample.rate)
     fft_short <- lapply(fft, function(x) {
       x$freq <- set_units(x$freq, "Hz")

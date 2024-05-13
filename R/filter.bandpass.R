@@ -1,10 +1,11 @@
 #' Filter a signal with a bandpass filter.
 #'
-#' This function filters a signal using a forth order Butterworth band pass filter with
+#' This function filters a signal using a Butterworth band pass filter with
 #' specified low and high frequency cutoffs. This function uses the \link[signal:butter]{signal::butter} function from the \link[signal:signal]{signal::signal} package.
 #'
 #' @param x Numeric vector or matrix of signal data.
 #' @param low,high Numeric, Lower and upper filter bands, passed on as \code{W} to the \link[signal:butter]{signal::butter} function. Use \link{freq.to.w} to convert temporal frequencies into the required format.
+#' @param order Order of the filter to be applied. Default is 4.
 #' @import units
 #'
 #' @return Filtered signal with the same dimensions as input 'x'.
@@ -20,7 +21,7 @@
 #'
 #' @docType Function
 #' @export filter.bandpass
-filter.bandpass <- function(x, low, high) {
+filter.bandpass <- function(x, low, high, order =4) {
   # Check if input parameters are numeric
   if (!all(sapply(list(x, low, high), is.numeric))) {
     stop("All input parameters must be numeric.");
@@ -46,10 +47,10 @@ filter.bandpass <- function(x, low, high) {
   }
 
   if (is.null(dim(x))) {
-    out <- filter.bandpass.core(x, low, high);
+    out <- filter.bandpass.core(x, low, high, order = order);
   } else{
     out <- apply(x, 2, function(x) {
-      filter.bandpass(x, low, high);
+      filter.bandpass(x, low, high, order = order);
     })
   }
   if (!is.null(un)) {
@@ -74,8 +75,8 @@ filter.bandpass <- function(x, low, high) {
 #' @importFrom signal butter filter
 #' @keywords internal
 #' @noRd
-filter.bandpass.core <- function(x, low, high) {
-  bf <- butter(4, c(low, high), type = "pass",plane="z");
+filter.bandpass.core <- function(x, low, high, order = 4) {
+  bf <- butter(order, c(low, high), type = "pass",plane="z");
   #filter.order<-200
   #bf <- fir1(filter.order, c(low, high), type = "pass")
   #delay <- filter.order/2
