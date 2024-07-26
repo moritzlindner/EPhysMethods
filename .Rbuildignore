@@ -3,3 +3,4 @@
 ^\.hello.R
 ^\R\.hello.R
 ^\EPhysMethods.Rproj
+^README\.Rmd$

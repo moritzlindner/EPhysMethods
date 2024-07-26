@@ -7,7 +7,8 @@
 autoreject.by.distance(x, threshold = 1)
 }
 \arguments{
-\item{x}{A matrix or data frame with the observations.}
+\item{x}{A matrix or data frame containing the time series data. Each column represents
+a different repeat, and each row represents a time point.}
 
 \item{threshold}{The distance threshold for rejection (default is 1).}
 }

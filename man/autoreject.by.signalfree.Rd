@@ -2,7 +2,7 @@
 % Please edit documentation in R/autoreject.by.signalfree.R
 \name{autoreject.by.signalfree}
 \alias{autoreject.by.signalfree}
-\title{Detect and Outlier Traces in Time Series Data with repeated measurements}
+\title{Detect and Outlier Traces in Time Series Data with multiple trials (e.g. repeated measurements)}
 \usage{
 autoreject.by.signalfree(x, rejection.cutoff = 1)
 }

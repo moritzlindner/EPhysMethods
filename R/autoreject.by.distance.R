@@ -3,7 +3,7 @@
 #' This function calculates the Euclidean distance between observations in a matrix,
 #' scales the data, and identifies outlier observations to reject based on a given threshold.
 #'
-#' @param x A matrix or data frame with the observations.
+#' @inheritParams autoreject.by.signalfree
 #' @param threshold The distance threshold for rejection (default is 1).
 #'
 #' @return A logical vector indicating which observations to reject.

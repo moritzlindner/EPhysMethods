@@ -1,4 +1,4 @@
-#' Detect and Outlier Traces in Time Series Data with repeated measurements
+#' Detect and Outlier Traces in Time Series Data with multiple trials (e.g. repeated measurements)
 #'
 #' This function detects and rejects outlier traces in time series data based on signal-free areas in the trace (e.g. before s signal-causing even occurred or when the response to it has ended).
 #'
@@ -22,6 +22,9 @@
 #' @rdname autoreject.by.signalfree
 autoreject.by.signalfree <- function(x, rejection.cutoff = 1) {
   # scale the data
+  if("units" %in% class(x)){
+    x <- drop_units(x);
+  }
   scale <- apply(x, 2, function(x) {
     scale(filter.detrend(x), center = F);
   })

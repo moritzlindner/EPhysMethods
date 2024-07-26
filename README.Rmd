@@ -1,0 +1,67 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%",
+  results = "hide",
+  message = FALSE
+)
+```
+
+# EPhysMethods R Package
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The EPhysMethods package contains helper functions and methods frequently used with electrophysiological data (filters, outlier detection, Fourier transform)
+
+## Installation
+
+You can install the development version of EPhysMethods from [GitHub](https://github.com/) with:
+
+``` {r installation}
+if (!requireNamespace("remotes", quietly = TRUE)){
+  install.packages("remotes")
+}
+remotes::install_github("moritzlindner/EPhysMethods")
+```
+
+Note that  `EPhysMethods` recommends the github-deposited R Package  `EPhysData`. Installation usually works automatically. Updating, however may fail. If this is the case, update manually using the following line of code:
+
+``` {r Update EPhysData}
+remotes::install_github("moritzlindner/EPhysData")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(EPhysMethods)
+## fast Fourier transform
+library(units)
+signal<-sin((1:1000)/33)*sin((1:1000)/20)
+plot(signal)
+fft_result <- fastfourier(signal, samp.freq = as_units(1000,"Hz"))
+plot(fft_result$freq[1:20],abs(fft_result$fur[1:20]))
+
+## Get spectral power
+require(EPhysData)
+X<-makeExampleEPhysData()
+ggEPhysData(X)
+psd<-PSD(X)
+ggEPhysData(psd)
+
+## identify most dissimilar columns 
+data <- matrix(data = c(1, 2, 3, 4, 5, 6, 7, 8, 9), ncol = 3)
+rejected <- autoreject.by.distance(data, threshold = 1)
+
+```
+
