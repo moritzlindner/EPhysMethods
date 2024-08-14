@@ -1,7 +1,7 @@
 #' Identify outlier observations  based on distances
 #'
 #' This function calculates the Euclidean distance between observations in a matrix,
-#' scales the data, and identifies outlier observations to reject based on a given threshold.
+#' and identifies outlier observations to reject based on a given threshold.
 #'
 #' @inheritParams autoreject.by.signalfree
 #' @param threshold The distance threshold for rejection (default is 1).
@@ -24,7 +24,7 @@ autoreject.by.distance <- function(x, threshold = 1) {
   if("units" %in% class(x)){
     x <- drop_units(x);
   }
-  dist_matrix <- dist(t(scale(x)), method = "euclidean");
+  dist_matrix <- dist(t(x), method = "euclidean");
   dist_df <- as.matrix(dist_matrix);
   reject <- scale(apply(dist_df, 1, mean)) > threshold;
   return(reject)

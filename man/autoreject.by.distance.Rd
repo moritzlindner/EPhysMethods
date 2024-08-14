@@ -17,7 +17,7 @@ A logical vector indicating which observations to reject.
 }
 \description{
 This function calculates the Euclidean distance between observations in a matrix,
-scales the data, and identifies outlier observations to reject based on a given threshold.
+and identifies outlier observations to reject based on a given threshold.
 }
 \details{
 The function calculates the Euclidean distance between all pairs of
