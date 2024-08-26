@@ -20,12 +20,14 @@
 #' @importFrom stats dist
 #' @importFrom units drop_units
 #' @export
-autoreject.by.distance <- function(x, threshold = 1) {
-  if("units" %in% class(x)){
-    x <- drop_units(x);
+autoreject.by.distance<-function (x, threshold = 1)
+{
+  if ("units" %in% class(x)) {
+    x <- drop_units(x)
   }
-  dist_matrix <- dist(t(x), method = "euclidean");
-  dist_df <- as.matrix(dist_matrix);
-  reject <- scale(apply(dist_df, 1, mean)) > threshold;
+  dist_matrix <- dist(t(x), method = "euclidean")
+  dist_df <- as.matrix(dist_matrix)
+  reject <- scale(apply(dist_df, 1, mean),center = F) > threshold
   return(reject)
 }
+

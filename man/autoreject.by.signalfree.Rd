@@ -19,10 +19,9 @@ A logical vector indicating whether each time series is rejected (TRUE) or not (
 This function detects and rejects outlier traces in time series data based on signal-free areas in the trace (e.g. before s signal-causing even occurred or when the response to it has ended).
 }
 \details{
-The function applies a series of data processing steps, including data scaling,
-calculation of areas of maximum normalized spread, smoothening, and scaling, to identify
-areas of high variance. Time series with high variance areas exceeding the rejection
-cutoff are considered as outliers and are marked for rejection.
+The function applies a series of data processing steps, namely scaling and
+calculation of areas of maximum normalized spread, to identify
+areas of high variance. Under the assumption that the signal on the data is larger than the noise. these areas of high trace-to-trace variance should be those with least signal contribution. These areas are then used to identify outlier traces  using the \link{autoreject.by.distance} function.
 }
 \examples{
 # Example usage

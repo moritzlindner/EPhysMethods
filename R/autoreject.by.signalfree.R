@@ -8,10 +8,9 @@
 #'
 #' @return A logical vector indicating whether each time series is rejected (TRUE) or not (FALSE).
 #'
-#' @details The function applies a series of data processing steps, including data scaling,
-#' calculation of areas of maximum normalized spread, smoothening, and scaling, to identify
-#' areas of high variance. Time series with high variance areas exceeding the rejection
-#' cutoff are considered as outliers and are marked for rejection.
+#' @details The function applies a series of data processing steps, namely scaling and
+#' calculation of areas of maximum normalized spread, to identify
+#' areas of high variance. Under the assumption that the signal on the data is larger than the noise. these areas of high trace-to-trace variance should be those with least signal contribution. These areas are then used to identify outlier traces  using the \link{autoreject.by.distance} function.
 #' @examples
 #' # Example usage
 #' data_matrix <- matrix(rnorm(30000), ncol = 30)
@@ -43,7 +42,7 @@ autoreject.by.signalfree <- function(x, rejection.cutoff = 1) {
     abs(x - mean(x)) / sd(x);
   })
   #calculate spread from normal based on this
-  spread <- scale(abs((apply(dat_ROV, 1, mean))));
-  rejected <- spread > rejection.cutoff;
+
+  rejected <- autoreject.by.distance(x, threshold = rejection.cutoff)
   return(rejected);
 }
