@@ -21,15 +21,15 @@ using a fast Fourier transform (FFT) and subsequent power calculations.
 }
 \details{
 This method calculates the Power Spectral Density (PSD) of electrophysiological data
-using a fast Fourier transform (FFT) and subsequent power calculations.
+using a discrete Fourier transform (DFT) and subsequent power calculations.
 The data is first bandpass filtered to retain only frequencies of interest.
-Then, a FFT is applied to the filtered data to transform it into the frequency domain.
-The PSD is computed from the squared magnitude of the FFT results.
+Then, a DFT is applied to the filtered data to transform it into the frequency domain.
+The PSD is computed from the squared magnitude of the DFT results.
 
 The power spectral density is computed using the formula:
 \deqn{PSD(f) = 2 \times \frac{1}{T \times N} \times |X(f)|^2}
-where |X(f)|^2 is the squared magnitude of the FFT, \eqn{T} is the sampling period,
-and \eqn{N} is the number of points in the FFT.
+where |X(f)|^2 is the squared magnitude of the DFT, \eqn{T} is the sampling period,
+and \eqn{N} is the number of points in the DFT.
 The factor of 2 accounts for the loss of power in the negative frequency components
 which are not included in the single-sided PSD.
 }

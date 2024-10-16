@@ -1,4 +1,4 @@
-#' Compute the Fast Fourier Transform (FFT) of a signal.
+#' Compute the Discrete Fourier Transform (DFT) of a signal.
 #'
 #' This function calculates the FFT of a signal and returns the frequency domain
 #' representation.
@@ -47,7 +47,7 @@ fastfourier <- function(x, samp.freq, ...) {
   return(f)
 }
 
-#' Internal function to compute the FFT of a signal.
+#' Internal function to compute the DFT of a signal.
 #'
 #' @param x Numeric vector of signal data.
 #' @param samp.freq Numeric scalar, the sampling frequency in Hertz.

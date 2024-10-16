@@ -2,7 +2,7 @@
 % Please edit documentation in R/fastfourier.R
 \name{fastfourier}
 \alias{fastfourier}
-\title{Compute the Fast Fourier Transform (FFT) of a signal.}
+\title{Compute the Discrete Fourier Transform (DFT) of a signal.}
 \usage{
 fastfourier(x, samp.freq, ...)
 }
